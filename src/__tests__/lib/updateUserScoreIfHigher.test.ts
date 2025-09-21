@@ -77,7 +77,7 @@ describe('updateUserScoreIfHigher', () => {
     it('should reject the promise if getDoc throws an error', async () => {
         getDoc.mockRejectedValueOnce(new Error('something failed!!!11'));
         dataMock.mockReturnValueOnce({ score: 0 });
-        expect(updateUserScoreIfHigher(999999)).rejects.toThrow(
+        await expect(updateUserScoreIfHigher(999999)).rejects.toThrow(
             'something failed!!!11',
         );
         expect(setDoc).not.toHaveBeenCalled();
@@ -85,7 +85,7 @@ describe('updateUserScoreIfHigher', () => {
     it('should reject the promise if setDoc throws an error', async () => {
         getDoc.mockRejectedValueOnce(new Error('nonono'));
         dataMock.mockReturnValueOnce({ score: 0 });
-        expect(updateUserScoreIfHigher(999999)).rejects.toThrow('nonono');
+        await expect(updateUserScoreIfHigher(999999)).rejects.toThrow('nonono');
         expect(setDoc).not.toHaveBeenCalled();
     });
 });
