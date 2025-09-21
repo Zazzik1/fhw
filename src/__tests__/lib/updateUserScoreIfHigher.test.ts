@@ -10,23 +10,19 @@ const getDoc = vi.fn(() =>
     }),
 );
 
-vi.mock('firebase/firestore', () => {
-    return {
-        doc,
-        setDoc,
-        getDoc,
-    };
-});
+vi.mock('firebase/firestore', () => ({
+    doc,
+    setDoc,
+    getDoc,
+}));
 
 type Auth = { currentUser?: Record<string, unknown> };
 const auth: Auth = { currentUser: { uid: 'test-uid' } };
 
-vi.mock('@/utils/firebase.utils', () => {
-    return {
-        auth,
-        db: { app: 'mocked-db' },
-    };
-});
+vi.mock('@/utils/firebase.utils', () => ({
+    auth,
+    db: { app: 'mocked-db' },
+}));
 
 let updateUserScoreIfHigher: any;
 
