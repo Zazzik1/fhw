@@ -23,8 +23,7 @@
     "scripts": {
         "dev": "vite --config vite/config.dev.mjs",
         "build": "vite build --config vite/config.prod.mjs",
-        "test:unit": "vitest run",
-        "test:unit:coverage": "vitest run --coverage"
+        "test:unit": "vitest run"
     },
     "dependencies": {
         "@hookform/resolvers": "^3.9.0",
