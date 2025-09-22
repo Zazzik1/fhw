@@ -33,7 +33,6 @@ class Horse extends Phaser.GameObjects.Sprite {
             );
             image.setScale(3);
             image.setOrigin(0, 0.5);
-            // make sure all modifiers render above the horse:
             image.modifierType = mod.type;
             image.baseY = mod.y;
             this.modifiers.push(image);
@@ -49,6 +48,7 @@ class Horse extends Phaser.GameObjects.Sprite {
 
         this.visualContainer = this.scene.add.container(this.x, this.y);
         this.visualContainer.add(this.modifiers);
+        // make sure all modifiers render above the horse:
         this.visualContainer.setDepth(100);
 
         this._postUpdateHandler = this._syncVisualToSprite.bind(this);
