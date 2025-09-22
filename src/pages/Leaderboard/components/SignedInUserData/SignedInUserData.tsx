@@ -1,4 +1,5 @@
 import DisplayNameForm from "@/components/DisplayNameForm/DisplayNameForm";
+import { Link } from "react-router-dom";
 
 interface SignedInUserDataProps {
   userDisplayName: string;
@@ -35,6 +36,9 @@ function SignedInUserData({
     <div>
       <p className="text-primary">twoja nazwa: {userDisplayName}</p>
       <p className="text-primary">twój wynik: {userScore}</p>
+      <p className="text-primary">
+        <Link to="/upgrade">→ ulepsz konia ←</Link>
+      </p>
     </div>
   );
 }

@@ -1,25 +1,29 @@
-import Phaser from "phaser";
+import Phaser from 'phaser';
 
-import WebFontFile from "../WebFontFile";
+import WebFontFile from '../WebFontFile';
 
-import { MENU_FONT } from "../constants";
-
+import { MENU_FONT } from '../constants';
+import { store } from '../../redux/store';
 class PreloadScene extends Phaser.Scene {
-  constructor() {
-    super("PreloadScene");
-  }
+    constructor() {
+        super('PreloadScene');
+    }
 
-  preload() {
-    this.load.image("trippyBg", "assets/trippyBgHand.png");
-    this.load.image("horse", "assets/horse.png");
-    this.load.image("finger", "assets/finger.png");
+    preload() {
+        this.load.image('trippyBg', 'assets/trippyBgHand.png');
+        this.load.image('horse', 'assets/horse.png');
+        this.load.image('finger', 'assets/finger.png');
 
-    this.load.addFile(new WebFontFile(this.load, MENU_FONT));
-  }
+        store.getState().modifier.activeModifiers.horse.forEach((mod) => {
+            this.load.image(`modifier_horse_${mod.id}`, `assets/${mod.icon}`);
+        });
 
-  create() {
-    this.scene.start("MenuScene");
-  }
+        this.load.addFile(new WebFontFile(this.load, MENU_FONT));
+    }
+
+    create() {
+        this.scene.start('MenuScene');
+    }
 }
 
 export default PreloadScene;
