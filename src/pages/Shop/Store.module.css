@@ -48,3 +48,13 @@
     flex-wrap: wrap;
     justify-content: center;
 }
+
+.heading {
+    color: yellow;
+    margin-bottom: 24px;
+}
+
+.background_image {
+    position: absolute;
+    z-index: -1;
+}

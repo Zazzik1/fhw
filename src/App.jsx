@@ -4,7 +4,7 @@ import Layout from './components/Layout/Layout';
 
 import Home from './pages/Home/Home';
 import LeaderboardPage from './pages/Leaderboard/Leaderboard';
-import StorePage from './pages/Store';
+import ShopPage from './pages/Shop';
 
 const router = createBrowserRouter([
     {
@@ -20,7 +20,7 @@ const router = createBrowserRouter([
             },
             {
                 path: '/upgrade',
-                element: <StorePage />,
+                element: <ShopPage />,
             },
         ],
     },

@@ -47,8 +47,17 @@ const Product = ({
             onClick={handleClick}
         >
             <div>
-                <img src="/assets/horse.png" width={iconWidth} height={iconHeight} style={{ position: 'absolute', zIndex: '-1' }} />
-                <img src={`/assets/${icon}`} width={iconHeight} height={iconWidth} />
+                <img
+                    src="/assets/horse.png"
+                    width={iconWidth}
+                    height={iconHeight}
+                    className={styles.background_image}
+                />
+                <img
+                    src={`/assets/${icon}`}
+                    width={iconHeight}
+                    height={iconWidth}
+                />
             </div>
             <div>
                 <div>
