@@ -34,17 +34,12 @@ class Horse extends Phaser.GameObjects.Sprite {
       image.setScale(3);
       image.setOrigin(0, 0.5);
       image.modifierType = mod.type;
+      image.renderingOrder = mod.renderingOrder;
+      image.isAffectedByGravity = mod.isAffectedByGravity;
       image.baseY = mod.y;
       this.modifiers.push(image);
     });
-    // sort so glasses are last (rendered on top):
-    this.modifiers.sort((a, b) => {
-      if (a.modifierType === "glasses" && b.modifierType !== "glasses")
-        return 1;
-      if (a.modifierType !== "glasses" && b.modifierType === "glasses")
-        return -1;
-      return 0;
-    });
+    this.modifiers.sort((a, b) => a.renderingOrder - b.renderingOrder);
 
     this.visualContainer = this.scene.add.container(this.x, this.y);
     this.visualContainer.add(this.modifiers);
@@ -64,9 +59,9 @@ class Horse extends Phaser.GameObjects.Sprite {
     this.visualContainer.y = this.y;
     this.visualContainer.rotation = this.rotation;
 
-    // glasses fall slowly for fancy effect:
+    // e.g. glasses fall slowly for fancy effect:
     this.modifiers.forEach((mod) => {
-      if (mod.modifierType !== "glasses") return;
+      if (!mod.isAffectedByGravity) return;
 
       const baseY = mod.baseY ?? 0;
 

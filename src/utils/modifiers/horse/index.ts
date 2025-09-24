@@ -1,42 +1,45 @@
-import { HorseModifier } from "./types";
+import { DefaultModifiers, HorseModifier, RequiredModifiers } from "./types";
+
+const defaultConfig: Readonly<DefaultModifiers> = {
+  width: 24,
+  height: 24,
+  x: 0,
+  y: 0,
+  scaleInStore: 3,
+  renderingOrder: 100,
+  isAffectedByGravity: false,
+};
+
+function createHorseModifier(
+  config: Partial<DefaultModifiers> & RequiredModifiers,
+) {
+  return {
+    ...defaultConfig,
+    ...config,
+  };
+}
 
 const horseModifiers: HorseModifier[] = [
-  {
+  createHorseModifier({
     id: 1,
     name: "Okulary przeciwsłoneczne",
-    type: "glasses",
     icon: "sunglasses.png",
+    renderingOrder: 300,
+    isAffectedByGravity: true,
     cost: 5,
-    scaleInStore: 3,
-    height: 24,
-    width: 24,
-    x: 0,
-    y: 0,
-  },
-  {
+  }),
+  createHorseModifier({
     id: 2,
     name: "Złoty kij",
-    type: "stick",
     icon: "golden_stick.png",
     cost: 20,
-    scaleInStore: 3,
-    height: 24,
-    width: 24,
-    x: 0,
-    y: 0,
-  },
-  {
+  }),
+  createHorseModifier({
     id: 3,
     name: "???",
-    type: "hair",
     icon: "bloody_hair.png",
     cost: 40,
-    scaleInStore: 3,
-    height: 24,
-    width: 24,
-    x: 0,
-    y: 0,
-  },
+  }),
 ];
 
 export default horseModifiers;
